@@ -30,6 +30,8 @@ gem "mongoid", "~> 4.0.0"
 
 gem 'therubyracer'
 
+gem 'kaminari'
+
 gem 'unicorn'
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'

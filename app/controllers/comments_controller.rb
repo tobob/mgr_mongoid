@@ -55,9 +55,10 @@ class CommentsController < ApplicationController
   # DELETE /comments/1
   # DELETE /comments/1.json
   def destroy
+    post = @comment.post
     @comment.destroy
     respond_to do |format|
-      format.html { redirect_to comments_url, notice: 'Comment was successfully destroyed.' }
+      format.html { redirect_to post, notice: 'Comment was successfully destroyed.' }
       format.json { head :no_content }
     end
   end
@@ -65,7 +66,7 @@ class CommentsController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_comment
-      @comment = Comment.find(params[:id])
+      @comment = Post.where("comments._id" => BSON::ObjectId.from_string(params[:id])).first.comments.find(params[:id])
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
